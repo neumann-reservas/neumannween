@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neumannween: El Portal Embrujado</title>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+
+    <!-- Librerías Externas -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #b30000; /* Rojo Sangre Oscuro */
+            --accent-color: #ff0000;  /* Rojo Brillante para Glow */
+            --background-color: #0a0a0a; /* Negro Intenso */
+            --surface-color: #141414;   /* Gris Muy Oscuro */
+            --text-color: #c7c7c7;      /* Blanco Roto */
+            --text-muted: #666;         /* Gris Oscuro */
+            --spooky-title-font: 'Nosifer', cursive;
+            --spooky-header-font: 'Creepster', cursive;
+            --body-font: 'Arial', sans-serif;
+        }
+
+        /* --- ESTILOS GENERALES Y ATMÓSFERA --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%231a1a1a" fill-opacity="0.4"%3E%3Cpath opacity=".5" d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/%3E%3Cpath d="M6 5V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h4V0h1v5h5v1h-5v4h5v1h-5v4h5v1h-5v4h5v1h-5v4h5v1h-5v4h5v1h-5v4h5v1h-5v4h5v1h-5v4h5v1h-5v4h-1v-4h-4v4h-1v-4h-4v4h-1v-4h-4v4h-1v-4h-4v4h-1v-4h-4v4h-1v-4h-4v4h-1v-4h-4v4H6v-4H0v-1h6v-4H0v-1h6v-4H0v-1h6v-4H0v-1h6v-4H0v-1h6v-4H0v-1h6v-4H0v-1h6v-4H0v-1h6V5z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACYSURBVEhL7dUxCsAgEERR7/9/Wi+1gYpgQhzki205cJsJk2gDV0Skx22sVWun8QfBHqzd6fC+j+v2ds0D/I9I2j2eE5tA5sBcwI+BE0C8i+AEYE3g40DSwGjAm8BewJTAncBNwJTAhcBVwJ3A3sB2wLPAmcBdwPPAvMCrwLzAEsDLwATAj8AiwEPAFMBjwCTAvsB+AQ67O80f331EAAAAAElFTSuQmCC'), auto;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section-title {
+            font-family: var(--spooky-title-font); font-size: 4rem; text-align: center; color: var(--primary-color);
+            margin-bottom: 2.5rem; letter-spacing: 5px; text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--primary-color);
+            animation: text-flicker 3s infinite;
+        }
+        @keyframes text-flicker { 0%,18%,22%,25%,53%,57%,100% { text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px var(--accent-color), 0 0 80px var(--accent-color), 0 0 90px var(--accent-color), 0 0 100px var(--accent-color), 0 0 150px var(--accent-color); } 20%,24%,55% { text-shadow: none; } }
+        #loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--background-color); z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s ease-out; }
+        #loading-overlay h2 { font-family: var(--spooky-title-font); font-size: 3rem; color: var(--primary-color); animation: text-flicker 3s infinite; text-align: center; }
+        .swal2-popup { background: var(--surface-color) !important; border: 1px solid var(--primary-color) !important; box-shadow: 0 0 20px var(--accent-color) !important; }
+        .swal2-title { color: var(--primary-color) !important; font-family: var(--spooky-header-font) !important; letter-spacing: 2px; }
+        .swal2-html-container { color: var(--text-color) !important; }
+        .swal2-confirm { background-color: var(--primary-color) !important; box-shadow: 0 0 10px var(--accent-color) !important; transition: all 0.3s ease !important; }
+        .swal2-input { background: #111 !important; color: var(--text-color) !important; border: 1px solid var(--primary-color) !important; }
+        header h1 { font-family: var(--spooky-header-font); font-size: 6rem; letter-spacing: 8px; color: var(--primary-color); text-shadow: 0 0 25px var(--accent-color); text-align: center; }
+        .btn-submit { width: 100%; padding: 1rem; background: var(--primary-color); color: white; border: none; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: var(--spooky-header-font); letter-spacing: 2px; }
+        .btn-submit:hover { background: #800000; box-shadow: 0 0 15px var(--accent-color); transform: scale(1.05); }
+        .upload-form { padding: 2rem; max-width: 600px; margin: 0 auto 3rem; }
+        .upload-form, .gallery-card, .modal-content, .award-card, .area-card { background: var(--surface-color); border: 1px solid #222; box-shadow: 0 0 5px black; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 700; color: var(--primary-color); font-family: var(--spooky-header-font); letter-spacing: 1px; }
+        .form-group select, .form-group textarea, .form-group input { width: 100%; padding: 0.8rem; background-color: #111; border: 1px solid #444; color: var(--text-color); font-family: var(--body-font); }
+        #galleryFilters { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .filter-btn { padding: 0.8rem 1.5rem; border: 1px solid var(--primary-color); background: transparent; color: var(--primary-color); cursor: pointer; transition: all 0.3s ease; font-family: var(--spooky-header-font); }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary-color); color: white; box-shadow: 0 0 10px var(--accent-color); }
+        #galleryGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .gallery-card { transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+        .gallery-card:hover { transform: scale(1.02); box-shadow: 0 0 15px var(--accent-color); }
+        .gallery-image-container { width: 100%; height: 250px; background-color: #111; }
+        .gallery-card-info { padding: 1rem; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .modal-content { display: flex; width: 90%; max-width: 1000px; max-height: 90vh; }
+        .modal-image { flex: 2; background-color: #000; }
+        .modal-details { flex: 1; padding: 2rem; overflow-y: auto; }
+        .modal-close { position: absolute; top: 20px; right: 30px; font-size: 2.5rem; color: white; cursor: pointer; text-shadow: 0 0 10px black; }
+        .modal-image iframe, .gallery-image-container iframe { border: none; width: 100%; height: 100%; }
+        .award-card { padding: 2rem; text-align: center; border: 1px dashed #555; }
+        .award-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .award-card h3, .area-card h3 { font-family: var(--spooky-header-font); }
+        
+        /* --- ESTILOS DEL JUEGO Y JUMPSCARE --- */
+        #gameContainer { display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; }
+        #arcaneRitual { flex: 2; min-width: 350px; }
+        #highScores { flex: 1; min-width: 280px; background: var(--surface-color); padding: 1.5rem; border: 1px solid #222; }
+        #highScores h3 { font-family: var(--spooky-header-font); color: var(--primary-color); text-align: center; margin-bottom: 1rem; }
+        #highScoresList { list-style: none; padding: 0; }
+        #highScoresList li { display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid #333; }
+        #highScoresList li:first-child { color: var(--accent-color); font-weight: bold; }
+        #gameBoard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0; max-width: 330px; }
+        .glyph { width: 100px; height: 100px; background: #111; border: 2px solid #444; cursor: pointer; transition: all 0.2s; display: flex; justify-content: center; align-items: center; font-size: 3rem; color: #555; }
+        .glyph:hover { border-color: var(--primary-color); }
+        .glyph.active { background: var(--primary-color); color: white; transform: scale(1.1); box-shadow: 0 0 20px var(--accent-color); }
+        #jumpscare { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; z-index: 20000; display: none; justify-content: center; align-items: center; }
+        
+        #jumpscare img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake { 0%{transform:translate(1px,1px) rotate(0)}10%{transform:translate(-1px,-2px) rotate(-1deg)}20%{transform:translate(-3px,0) rotate(1deg)}30%{transform:translate(3px,2px) rotate(0)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,2px) rotate(-1deg)}60%{transform:translate(-3px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-1px,-1px) rotate(1deg)}90%{transform:translate(1px,2px) rotate(0)}100%{transform:translate(1px,-2px) rotate(-1deg)}}
+    </style>
+</head>
+<body>
+    <div id="loading-overlay"><h2>Despertando a los Antiguos...</h2></div>
+    
+    <!-- === CAMBIO REALIZADO: AÑADIDA MÚSICA DE FONDO Y GRITOS MÚLTIPLES === -->
+    <audio id="backgroundMusic" src="fondo.mp3" loop preload="auto"></audio>
+    <audio class="scream-sound" src="grito.mp3" preload="auto"></audio>
+    <audio class="scream-sound" src="grito2.mp3" preload="auto"></audio>
+    <audio class="scream-sound" src="grito3.mp3" preload="auto"></audio>
+    <audio class="scream-sound" src="grito4.mp3" preload="auto"></audio>
+    <audio id="jumpscareSound" src="risa.mp3" preload="auto"></audio>
+
+    <div id="jumpscare"><img src="https://media.tenor.com/67Uf_vFej7cAAAAM/hello.gif" alt="Jumpscare"></div>
+
+    <header><h1>Neumannween</h1></header>
+
+    <main class="container">
+        <section id="areasSection">
+            <h2 class="section-title">Antros en Competencia</h2>
+            <div id="areasDashboard" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <!-- Area cards will be generated by JS -->
+            </div>
+        </section>
+
+        <section id="uploadSection">
+            <form class="upload-form" id="uploadForm">
+                <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;"><i class="fas fa-biohazard"></i> Publica tu Atrocidad</h2>
+                <div class="form-group"><label for="areaSelect">Selecciona tu Antro:</label><select id="areaSelect" required><option value="">Cargando...</option></select></div>
+                <div class="form-group"><label for="imageInput">Selecciona tu Evidencia Gráfica:</label><input type="file" id="imageInput" accept="image/*" required></div>
+                <div class="form-group"><label for="descriptionInput">Describe el Horror:</label><textarea id="descriptionInput" rows="3" maxlength="200" required></textarea></div>
+                <button type="submit" class="btn-submit">Liberar Horror</button>
+            </form>
+        </section>
+        
+        <section id="gallerySection">
+            <h2 class="section-title">Galería de los Condenados</h2>
+            <div id="galleryFilters"></div>
+            <div id="galleryGrid"></div>
+        </section>
+
+        <section id="gameSection" style="margin-top: 4rem;">
+            <h2 class="section-title">El Ritual Arcano</h2>
+            <div id="gameContainer">
+                <div id="arcaneRitual">
+                    <p>Observa la secuencia de glifos arcanos y repítela sin error para acumular poder. Un solo fallo y desatarás el horror del más allá. La velocidad aumentará con cada acierto.</p>
+                    <div id="gameStats" style="margin: 1rem 0; font-size: 1.2rem; font-family: var(--spooky-header-font);">
+                        Puntaje Actual: <span id="currentScore">0</span>
+                    </div>
+                    <div id="gameBoard"></div>
+                    <button id="startGameBtn" class="btn-submit">Comenzar Ritual</button>
+                </div>
+                <div id="highScores">
+                    <h3><i class="fas fa-trophy"></i> Pabellón de los Inmortales</h3>
+                    <ol id="highScoresList"><li>Cargando...</li></ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="awardsSection" style="margin-top: 4rem;">
+            <h2 class="section-title">Salón de la Infamia</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div class="award-card"><i class="fas fa-skull"></i><h3>El Antro Más Siniestro</h3></div>
+                <div class="award-card"><i class="fas fa-users"></i><h3>La Horda Más Creativa</h3></div>
+                <div class="award-card"><i class="fas fa-book-dead"></i><h3>Innovación Macabra</h3></div>
+                <div class="award-card"><i class="fas fa-eye"></i><h3>Detalle Escalofriante</h3></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="imageDetailModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-image"></div>
+            <div class="modal-details">
+                <h3 id="modalArea" style="font-family: var(--spooky-header-font); letter-spacing: 1px; color: var(--primary-color);"></h3>
+                <p id="modalTimestamp" style="color: var(--text-muted); font-size: 0.8em;"></p>
+                <p id="modalDescription" style="margin: 1rem 0;"></p>
+                <div class="comments-section">
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; border-top: 1px solid #333; padding-top: 1rem;"><i class="fas fa-comments"></i> Ecos del Abismo</h4>
+                    <ul id="commentsList" style="list-style: none; padding: 0; margin-bottom: 1.5rem; max-height: 250px; overflow-y: auto;"></ul>
+                    <form id="commentForm">
+                        <div class="form-group"><input type="text" id="authorInput" placeholder="Tu alias..." required></div>
+                        <div class="form-group"><textarea id="commentInput" rows="2" placeholder="Deja tu eco aquí..." required></textarea></div>
+                        <button type="submit" class="btn-submit" style="padding: 0.5rem; font-size: 1rem;">Comentar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHLX2t9-_8OLha5NSG6X7JQHvFnEsucp1f9dawnvUb8iJjpLAiKp9kEtwoCZOT4eMn/exec';
+        
+        let allGalleryData = [];
+        const imageDetailModal = document.getElementById('imageDetailModal');
+        
+        // --- VARIABLES DE SONIDO ---
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const screamAudios = document.querySelectorAll('.scream-sound');
+        let musicStarted = false;
+
+        // --- VARIABLES GLOBALES DEL JUEGO ---
+        const gameBoard = document.getElementById('gameBoard');
+        const startGameBtn = document.getElementById('startGameBtn');
+        const currentScoreEl = document.getElementById('currentScore');
+        const highScoresList = document.getElementById('highScoresList');
+        const jumpscareEl = document.getElementById('jumpscare');
+        const jumpscareAudio = document.getElementById('jumpscareSound');
+        const glyphIcons = ['fa-skull', 'fa-eye', 'fa-spider', 'fa-ghost', 'fa-book-dead', 'fa-hat-wizard', 'fa-cat', 'fa-moon', 'fa-ankh'];
+        let sequence = [], playerSequence = [], level = 0, score = 0, canPlayerClick = false, gameInProgress = false;
+
+        // --- INICIALIZACIÓN DE LA PÁGINA ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initGame();
+            loadInitialData();
+
+            document.getElementById('uploadForm').addEventListener('submit', handleImageUpload);
+            document.getElementById('galleryGrid').addEventListener('click', handleGalleryClick);
+            document.getElementById('commentForm').addEventListener('submit', handleAddComment);
+            startGameBtn.addEventListener('click', startGame);
+            gameBoard.addEventListener('click', handlePlayerClick);
+            
+            // === CAMBIO REALIZADO: REPRODUCIR SONIDOS CON INTERACCIÓN ===
+            document.body.addEventListener('click', (event) => {
+                // Iniciar música de fondo con la primera interacción del usuario
+                if (!musicStarted) {
+                    backgroundMusic.volume = 0.3; // Volumen bajo para que no moleste
+                    backgroundMusic.play().catch(e => console.log("La reproducción automática fue bloqueada por el navegador."));
+                    musicStarted = true;
+                }
+
+                // Reproducir un grito aleatorio en ciertos elementos
+                if (event.target.closest('button, a, .gallery-card, select, input, .glyph')) {
+                    const randomScream = screamAudios[Math.floor(Math.random() * screamAudios.length)];
+                    if (randomScream && randomScream.readyState >= 2) {
+                        randomScream.currentTime = 0;
+                        randomScream.play().catch(e => {});
+                    }
+                }
+            });
+        });
+
+        async function loadInitialData() {
+            try {
+                await Promise.all([ loadAreas(), loadGallery(), loadHighScores() ]);
+            } catch (error) {
+                Swal.fire({ title: 'Error Inesperado', text: 'Los espectros no pudieron cargar los datos. ' + error.message, icon: 'error', customClass: { popup: 'swal2-popup' } });
+            } finally {
+                const loader = document.getElementById('loading-overlay');
+                loader.style.opacity = '0';
+                setTimeout(() => { loader.style.display = 'none'; }, 1000);
+            }
+        }
+        
+        // --- FUNCIONES DE GALERÍA, ÁREAS Y COMENTARIOS ---
+        async function loadAreas() {
+            const response = await fetch(`${SCRIPT_URL}?action=getAreas`);
+            const areas = await response.json();
+            const dashboardContainer = document.getElementById('areasDashboard');
+            const selectContainer = document.getElementById('areaSelect');
+            const filterContainer = document.getElementById('galleryFilters');
+            selectContainer.innerHTML = '<option value="" disabled selected>Elige un antro...</option>';
+            filterContainer.innerHTML = '<button class="filter-btn active" onclick="filterGallery(event, \'todos\')">Todos</button>';
+            const icons = ['fa-skull-crossbones', 'fa-hat-wizard', 'fa-spider', 'fa-ghost', 'fa-biohazard', 'fa-cat'];
+            dashboardContainer.innerHTML = '';
+            areas.forEach((area, index) => {
+                dashboardContainer.innerHTML += `<div class="area-card" style="padding: 2rem; text-align: center;"><i class="fas ${icons[index % icons.length]}" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);"></i><h3>${area}</h3></div>`;
+                selectContainer.innerHTML += `<option value="${area}">${area}</option>`;
+                filterContainer.innerHTML += `<button class="filter-btn" onclick="filterGallery(event, '${area}')">${area}</button>`;
+            });
+        }
+        
+        async function loadGallery() {
+            const response = await fetch(`${SCRIPT_URL}?action=getGallery`);
+            allGalleryData = await response.json();
+            renderGallery(allGalleryData);
+        }
+
+        function renderGallery(data) {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = data.length === 0 ? '<p style="text-align:center; grid-column: 1 / -1;">El abismo está vacío...</p>' : data.map(item => `
+                <div class="gallery-card" data-photoid="${item.photoId}">
+                    <div class="gallery-image-container" data-iframe='${item.imageUrl.replace(/'/g, "&apos;")}'></div>
+                    <div class="gallery-card-info"><h4>${item.area}</h4><p>${item.description}</p></div>
+                </div>`).join('');
+            setupLazyLoader();
+        }
+
+        function setupLazyLoader() {
+            const lazyIframes = document.querySelectorAll('.gallery-image-container[data-iframe]');
+            const observer = new IntersectionObserver((entries, self) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const container = entry.target;
+                        container.innerHTML = container.dataset.iframe;
+                        container.removeAttribute('data-iframe');
+                        self.unobserve(container);
+                    }
+                });
+            }, { rootMargin: "0px 0px 200px 0px" });
+            lazyIframes.forEach(iframe => observer.observe(iframe));
+        }
+
+        function filterGallery(event, area) {
+            document.querySelector('#galleryFilters .filter-btn.active').classList.remove('active');
+            event.target.classList.add('active');
+            const filteredData = (area === 'todos') ? allGalleryData : allGalleryData.filter(item => item.area === area);
+            renderGallery(filteredData);
+        }
+
+        function handleGalleryClick(event) {
+            const card = event.target.closest('.gallery-card');
+            if (card && card.dataset.photoid) openImageModal(card.dataset.photoid);
+        }
+
+        async function handleImageUpload(event) {
+            event.preventDefault();
+            const form = event.target;
+            const file = form.querySelector('#imageInput').files[0];
+            if (!file) { Swal.fire({ title: 'Evidencia Faltante', text: 'Debes seleccionar un archivo de imagen.', icon: 'warning', customClass: { popup: 'swal2-popup' }}); return; }
+            Swal.fire({ title: 'Invocando...', text: 'Espera mientras los espectros procesan tu horror.', allowOutsideClick: false, didOpen: () => Swal.showLoading(), customClass: { popup: 'swal2-popup' } });
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async () => {
+                const payload = { action: "uploadImage", data: { area: form.querySelector('#areaSelect').value, description: form.querySelector('#descriptionInput').value, base64Image: reader.result } };
+                try {
+                    const response = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        Swal.fire({ title: '¡Invocación Exitosa!', text: 'Tu horror ha sido publicado.', icon: 'success', customClass: { popup: 'swal2-popup' }});
+                        form.reset();
+                        await loadGallery();
+                    } else { throw new Error(result.message); }
+                } catch (error) { Swal.fire({ title: 'Invocación Fallida', text: 'La criatura no pudo ser liberada: ' + error.message, icon: 'error', customClass: { popup: 'swal2-popup' }}); }
+            };
+        }
+
+        function openImageModal(photoId) {
+            const item = allGalleryData.find(p => p.photoId == photoId);
+            if (!item) return;
+            document.querySelector('.modal-image').innerHTML = item.imageUrl;
+            document.getElementById('modalArea').innerText = item.area;
+            document.getElementById('modalDescription').innerText = item.description;
+            document.getElementById('modalTimestamp').innerText = new Date(item.timestamp).toLocaleString();
+            document.getElementById('commentForm').dataset.photoid = photoId;
+            imageDetailModal.style.display = 'flex';
+            loadComments(photoId);
+        }
+
+        function closeModal() {
+            document.querySelector('.modal-image').innerHTML = '';
+            imageDetailModal.style.display = 'none';
+        }
+        
+        async function loadComments(photoId) {
+            const commentsList = document.getElementById('commentsList');
+            commentsList.innerHTML = '<li>Cargando ecos...</li>';
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=getComments&photoId=${photoId}`);
+                const comments = await response.json();
+                commentsList.innerHTML = comments.length === 0 ? '<li>Silencio absoluto...</li>' : comments.map(c => `<li style="border-bottom: 1px solid #222; padding-bottom: 0.5rem; margin-bottom: 0.5rem;"><strong style="color: var(--primary-color);">${c.author}:</strong><p style="margin: 0.2rem 0 0 0.5rem;">${c.comment}</p></li>`).join('');
+            } catch (e) { commentsList.innerHTML = '<li>No se pudieron cargar los ecos.</li>'; }
+        }
+
+        async function handleAddComment(event) {
+            event.preventDefault();
+            const form = event.target, authorInput = document.getElementById('authorInput'), commentInput = document.getElementById('commentInput'), photoId = form.dataset.photoid;
+            const payload = { action: 'addComment', data: { photoId, author: authorInput.value, comment: commentInput.value }};
+            try {
+                const response = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+                const result = await response.json();
+                if (result.status === 'success') {
+                    commentInput.value = '';
+                    await loadComments(photoId);
+                } else { throw new Error(result.message); }
+            } catch (error) { Swal.fire({ title: 'Error', text: 'El eco no pudo ser registrado: ' + error.message, icon: 'error', customClass: { popup: 'swal2-popup' } }); }
+        }
+
+        // --- FUNCIONES DEL JUEGO "EL RITUAL ARCANO" ---
+        function initGame() {
+            gameBoard.innerHTML = '';
+            for (let i = 0; i < 9; i++) {
+                const glyph = document.createElement('div');
+                glyph.classList.add('glyph');
+                glyph.dataset.id = i;
+                glyph.innerHTML = `<i class="fas ${glyphIcons[i]}"></i>`;
+                gameBoard.appendChild(glyph);
+            }
+        }
+
+        async function startGame() {
+            if (gameInProgress) return;
+            gameInProgress = true;
+            sequence = [], playerSequence = [], level = 0, score = 0;
+            currentScoreEl.textContent = 0;
+            startGameBtn.style.display = 'none';
+            await nextLevel();
+        }
+
+        async function nextLevel() {
+            canPlayerClick = false, playerSequence = [], level++;
+            sequence.push(Math.floor(Math.random() * 9));
+            await playSequence();
+            canPlayerClick = true;
+        }
+
+        function playSequence() {
+            return new Promise(resolve => {
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i >= sequence.length) { clearInterval(interval); resolve(); return; }
+                    const glyphEl = document.querySelector(`.glyph[data-id='${sequence[i]}']`);
+                    if (glyphEl) {
+                        glyphEl.classList.add('active');
+                        setTimeout(() => glyphEl.classList.remove('active'), Math.max(150, 500 - (level * 20)));
+                    }
+                    i++;
+                }, Math.max(250, 700 - (level * 30)));
+            });
+        }
+        
+        async function handlePlayerClick(e) {
+            if (!canPlayerClick) return;
+            const clickedGlyph = e.target.closest('.glyph');
+            if (!clickedGlyph) return;
+            const glyphId = parseInt(clickedGlyph.dataset.id);
+            playerSequence.push(glyphId);
+            clickedGlyph.classList.add('active');
+            setTimeout(() => clickedGlyph.classList.remove('active'), 200);
+            const currentIndex = playerSequence.length - 1;
+            if (playerSequence[currentIndex] !== sequence[currentIndex]) { await gameOver(); return; }
+            if (playerSequence.length === sequence.length) {
+                score = level * 10;
+                currentScoreEl.textContent = score;
+                canPlayerClick = false;
+                setTimeout(nextLevel, 1000);
+            }
+        }
+
+        async function gameOver() {
+            gameInProgress = false, canPlayerClick = false;
+            jumpscareEl.style.display = 'flex';
+            jumpscareAudio.play();
+            
+            setTimeout(() => jumpscareEl.style.display = 'none', 2500);
+
+            const { value: nickname } = await Swal.fire({
+                title: '¡HAS SIDO CONSUMIDO!', html: `Tu puntaje de <strong>${score}</strong> quedará grabado. Inscribe tu alias:`, input: 'text', inputPlaceholder: 'Tu Alias Inmortal',
+                confirmButtonText: 'Grabar mi Legado', allowOutsideClick: false, customClass: { popup: 'swal2-popup', input: 'swal2-input' },
+                inputValidator: (v) => !v && '¡No puedes ser un fantasma sin nombre!'
+            });
+            if (nickname) await saveScore(nickname, score);
+            startGameBtn.style.display = 'block';
+        }
+
+        async function saveScore(nickname, score) {
+            Swal.fire({ title: 'Grabando en piedra...', allowOutsideClick: false, didOpen: () => Swal.showLoading(), customClass: { popup: 'swal2-popup' } });
+            try {
+                const payload = { action: 'addScore', data: { nickname, score } };
+                const response = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+                const result = await response.json();
+                if (result.status !== 'success') throw new Error(result.message);
+                Swal.close();
+                await loadHighScores();
+            } catch (error) { Swal.fire({ title: 'Error', text: 'Los escribas fallaron: ' + error.message, icon: 'error', customClass: { popup: 'swal2-popup' } }); }
+        }
+
+        async function loadHighScores() {
+            highScoresList.innerHTML = '<li>Cargando...</li>';
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=getHighScores`);
+                const scores = await response.json();
+                if(scores.status === 'error') throw new Error(scores.message);
+                highScoresList.innerHTML = scores.length === 0 ? '<li>El pabellón está vacío...</li>' : scores.map(s => `<li><span>${s.nickname}</span><span>${s.score}</span></li>`).join('');
+            } catch (error) { highScoresList.innerHTML = '<li>No se pudieron cargar los puntajes.</li>'; console.error(error); }
+        }
+    </script>
+</body>
+</html>
